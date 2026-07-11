@@ -4,7 +4,10 @@ project(costmap_cspace_msgs)
 find_package(neonavigation_cmake REQUIRED)
 
 neonavigation_find_build_dependencies()
-neonavigation_generate_interfaces()
-ament_export_dependencies(rosidl_default_runtime)
+neonavigation_generate_interfaces(
+    msg/CSpace3D.msg
+    msg/CSpace3DUpdate.msg
+    msg/MapMetaData3D.msg
+)
 
-ament_package()
+neonavigation_package()

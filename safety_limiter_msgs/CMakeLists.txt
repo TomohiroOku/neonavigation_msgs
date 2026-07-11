@@ -4,7 +4,8 @@ project(safety_limiter_msgs)
 find_package(neonavigation_cmake REQUIRED)
 
 neonavigation_find_build_dependencies()
-neonavigation_generate_interfaces()
-ament_export_dependencies(rosidl_default_runtime)
+neonavigation_generate_interfaces(
+    msg/SafetyLimiterStatus.msg
+)
 
-ament_package()
+neonavigation_package()

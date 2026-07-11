@@ -4,8 +4,12 @@ project(neonavigation_metrics_msgs)
 find_package(neonavigation_cmake REQUIRED)
 
 neonavigation_find_build_dependencies()
-neonavigation_generate_interfaces()
-ament_export_dependencies(rosidl_default_runtime)
+neonavigation_generate_interfaces(
+  msg/Metric.msg
+  msg/Metrics.msg
+)
+
+neonavigation_add_library(helper INTERFACE)
 
 if(BUILD_TESTING)
 
@@ -24,10 +28,4 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(DIRECTORY include/
-  DESTINATION include/${PROJECT_NAME}
-)
-
-ament_export_include_directories()
-
-ament_package()
+neonavigation_package(EXPORT_TARGETS)

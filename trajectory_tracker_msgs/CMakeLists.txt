@@ -4,8 +4,20 @@ project(trajectory_tracker_msgs)
 find_package(neonavigation_cmake REQUIRED)
 
 neonavigation_find_build_dependencies()
-neonavigation_generate_interfaces()
-ament_export_dependencies(rosidl_default_runtime)
+neonavigation_generate_interfaces(
+  msg/PathWithVelocity.msg
+  msg/PoseStampedWithVelocity.msg
+  msg/TrajectoryServerStatus.msg
+  msg/TrajectoryTrackerStatus.msg
+)
+
+neonavigation_add_library(converter INTERFACE
+)
+neonavigation_target_link_libraries(converter
+  INTERFACE
+    geometry_msgs
+    nav_msgs
+)
 
 if (BUILD_TESTING)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -32,9 +44,4 @@ if (BUILD_TESTING)
 
 endif()
 
-install(DIRECTORY include/
-  DESTINATION include/${PROJECT_NAME}
-)
-ament_export_include_directories()
-
-ament_package()
+neonavigation_package(EXPORT_TARGETS)
